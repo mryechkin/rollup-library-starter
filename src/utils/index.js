@@ -1,1 +1,3 @@
-export const Greet = (text) => console.log(`Hello ${text}.`);
+export function greet(text) {
+  console.log(`Hello ${text}.`);
+}

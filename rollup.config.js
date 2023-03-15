@@ -1,17 +1,27 @@
-import path from 'path';
+/**
+ * NOTE: There is currently an open issue for adding 'use client' directive
+ * https://github.com/rollup/rollup/issues/4699
+ */
+
+import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import analyze from 'rollup-plugin-analyzer';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { terser } from 'rollup-plugin-terser';
 
-import pkg from './package.json';
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
 
-// Used for generating external dependencies
-// Credit: Mateusz Burzyński (@Andarist)
-// Source: https://github.com/rollup/rollup-plugin-babel/issues/148#issuecomment-399696316
+/**
+ * Used for generating external dependencies
+ * Credit: Mateusz Burzyński (https://github.com/Andarist)
+ * Source: https://github.com/rollup/rollup-plugin-babel/issues/148#issuecomment-399696316
+ */
 const makeExternalPredicate = (externalArr) => {
   if (externalArr.length === 0) {
     return () => false;
@@ -27,8 +37,9 @@ const outputOptions = {
   preserveModules: true,
   banner: `/*
  * Rollup Library Starter
- * https://github.com/mryechkin/rollup-library-starter
- * (c) Mykhaylo Ryechkin (@mryechkin)
+ * {@link https://github.com/mryechkin/rollup-library-starter}
+ * @copyright Mykhaylo Ryechkin (@mryechkin)
+ * @license MIT
  */`,
 };
 
@@ -54,7 +65,7 @@ const config = {
   plugins: [
     alias({
       entries: {
-        src: path.resolve(path.resolve(__dirname), 'src'),
+        src: fileURLToPath(new URL('src', import.meta.url)),
       },
     }),
     nodeResolve(),
@@ -68,6 +79,7 @@ const config = {
         ['@babel/preset-react', { runtime: 'automatic' }],
       ],
     }),
+    preserveDirectives.default(),
     terser(),
     analyze({
       hideDeps: true,
