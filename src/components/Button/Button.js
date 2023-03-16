@@ -1,11 +1,6 @@
 'use client';
 
-export const VARIANT = {
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-};
-
-export default function Button(props) {
+const Button = (props) => {
   const { children, onClick } = props;
 
   function handleOnClick() {
@@ -18,4 +13,11 @@ export default function Button(props) {
       {children}
     </button>
   );
-}
+};
+
+export const VARIANT = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+};
+
+export default Button;

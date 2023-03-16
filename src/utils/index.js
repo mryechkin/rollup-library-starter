@@ -1,3 +1,5 @@
-export function greet(text) {
-  console.log(`Hello ${text}.`);
+export function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }

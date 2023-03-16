@@ -10,9 +10,9 @@ import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import analyze from 'rollup-plugin-analyzer';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
-import { terser } from 'rollup-plugin-terser';
 
 const require = createRequire(import.meta.url);
 const pkg = require('./package.json');
@@ -87,6 +87,12 @@ const config = {
       summaryOnly: true,
     }),
   ],
+  // Ignore warnings when using "use client" directive
+  onwarn(warning, warn) {
+    if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+      warn(warning);
+    }
+  },
 };
 
 export default config;
