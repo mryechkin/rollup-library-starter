@@ -35,6 +35,10 @@ const babelRuntimeVersion = pkg.dependencies['@babel/runtime'].replace(/^[^0-9]*
 const outputOptions = {
   exports: 'named',
   preserveModules: true,
+  // Ensures that CJS default exports are imported properly (based on __esModule)
+  // If needed, can switch to 'compat' which checks for .default prop on the default export instead
+  // see https://rollupjs.org/configuration-options/#output-interop
+  interop: 'auto',
   banner: `/*
  * Rollup Library Starter
  * {@link https://github.com/mryechkin/rollup-library-starter}
