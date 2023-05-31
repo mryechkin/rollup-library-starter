@@ -83,7 +83,7 @@ const config = {
         ['@babel/preset-react', { runtime: 'automatic' }],
       ],
     }),
-    preserveDirectives.default(),
+    preserveDirectives(),
     terser(),
     analyze({
       hideDeps: true,

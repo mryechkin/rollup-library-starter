@@ -1,13 +1,16 @@
 <h1 align="center"><b>Rollup</b> Library Starter</h1>
 
-<p align="center">
+<p align="center" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+  <a href="https://rollupjs.org">
+    <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/rollup-library-starter/dev/rollup?color=%23ef3334&style=for-the-badge" alt="Rollup" />
+  </a>
   <a href="https://github.com/mryechkin/rollup-library-starter/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/mryechkin/rollup-library-starter?style=for-the-badge" alt="GitHub" />
+    <img src="https://img.shields.io/github/license/mryechkin/rollup-library-starter?style=for-the-badge" alt="License" />
   </a>
 </p>
 
 <p align="center">
-  <img src="https://www.misha.wtf/_next/image?url=%2Fblog%2Frollup-library-starter%2Fcover.png&w=3840&q=90" alt="Rollup logo" />
+  <img src="https://www.misha.wtf/_next/image?url=%2Fblog%2Frollup-library-starter%2Fcover.png&w=640&q=100" alt="Rollup logo" />
 </p>
 
 ## Overview
@@ -167,6 +170,30 @@ And the following [Babel](https://babeljs.io) plugins:
 ## Rollup Config
 
 For details of all the configuration options used in this template, please see the accompanying [blog post](https://www.misha.wtf/blog/rollup-library-starter).
+
+## Usage with Server Components
+
+This template supports usage of the [`"use client"`](https://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive) directive for denoting Client vs Server Component, thanks to the [`rollup-plugin-preserve-directives`](https://github.com/Ephem/rollup-plugin-preserve-directives) plugin.
+
+To mark a component as a **Client Component**, add `'use client'` at the very top of the file:
+
+```jsx
+// src/components/Button.js
+'use client';
+
+const Button = (props) => {
+  // ...
+};
+
+// ...
+```
+
+The `rollup-plugin-preserve-directives` plugin, together with the `preserveModules` output option, ensures that the `'use client'` directive does not get discarded during build time.
+
+> **Warning**
+> It's important that `preserveModules` is set to `true` for this to work as expected.
+
+Note as well that if using the `Object.assign()` pattern for sub-components, the component MUST be a Client Component, otherwise you may get an error like _"Cannot dot into a client module from a server component."_
 
 ## Author
 
