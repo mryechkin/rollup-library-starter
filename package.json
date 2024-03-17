@@ -30,25 +30,25 @@
   "author": "Mykhaylo Ryechkin (https://github.com/mryechkin)",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.23.5"
+    "@babel/runtime": "^7.24.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.23.4",
-    "@babel/preset-env": "^7.23.5",
+    "@babel/plugin-transform-runtime": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.0",
-    "rollup": "^4.7.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "rollup": "^4.13.0",
     "rollup-plugin-analyzer": "^4.0.0",
-    "rollup-plugin-preserve-directives": "^0.2.0"
+    "rollup-plugin-preserve-directives": "^0.4.0"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.0 || ^18.2.0",
