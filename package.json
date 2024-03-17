@@ -1,34 +1,38 @@
 {
   "name": "rollup-library-starter",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Starter template for building JS libraries using Rollup",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "prebuild": "rm -rf dist",
-    "build": "rollup -c",
-    "lint": "eslint --ignore-path .gitignore --fix src",
-    "format": "prettier --write src",
-    "prepare": "husky install"
-  },
   "keywords": [
     "rollup",
     "javascript",
     "library",
     "esm"
   ],
-  "author": "Mykhaylo Ryechkin (https://github.com/mryechkin)",
   "license": "MIT",
+  "author": "Mykhaylo Ryechkin (https://github.com/mryechkin)",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c",
+    "format": "prettier --write src",
+    "lint": "eslint --ignore-path .gitignore --fix src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": "npm run lint",
+    "*.{js,css,md*}": "npm run format"
+  },
   "dependencies": {
     "@babel/runtime": "^7.24.0"
   },
@@ -42,7 +46,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-config-acme": "^3.1.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
@@ -54,16 +58,12 @@
     "react": "^16.14.0 || ^17.0.0 || ^18.2.0",
     "react-dom": "^16.14.0 || ^17.0.0 || ^18.2.0"
   },
+  "engines": {
+    "node": ">=16.0.0 || >=18.0.0 || >=19.0.0 || >=20.0.0"
+  },
   "overrides": {
     "rollup-plugin-preserve-directives": {
       "rollup": "^4.7.0"
     }
-  },
-  "engines": {
-    "node": ">=16.0.0 || >=18.0.0 || >=19.0.0 || >=20.0.0"
-  },
-  "lint-staged": {
-    "*.js": "npm run lint",
-    "*.{js,css,md*}": "npm run format"
   }
 }
